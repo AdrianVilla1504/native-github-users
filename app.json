@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "native-github-users",
+    "slug": "native-github-users",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
