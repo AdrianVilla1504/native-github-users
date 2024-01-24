@@ -4,9 +4,9 @@ Una pequeña aplicación de busqueda de react native para ver usuarios de github
 
 ## Para empezar
 
-Se uso Javascript como lenguaje de progracmacion, Expo como framework de React, Node como entorno de ejecucion, y Npm como gestor de paquetes.
+Se uso Javascript como lenguaje de programación, Expo como framework de React, Node como entorno de ejecución, y Npm como gestor de paquetes.
 
-Copia y pegue el siguiente codigo para simular las variables de entorno en el directorio "/src/services/GitHubUsers.js"
+Ingrese al archivo "GitHubUsers.js" ubicado en el directorio "/src/services/GitHubUsers.js", elimine todo su contenido, y copie y pegue el siguiente codigo para simular las variables de entorno:
 
 ```
 export const fetchUserData = async (username) => {
