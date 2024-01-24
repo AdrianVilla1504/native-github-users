@@ -1,12 +1,12 @@
 import React, { useState, useCallback } from "react";
-import { ScrollView, TextInput, Button, View, ActivityIndicator } from "react-native";
+import { View, FlatList, ActivityIndicator } from "react-native";
 import { fetchUserData, fetchUsersList } from "../../services/GitHubUsers";
 import BarChart from "../../components/BarChart";
 import UserList from "../../components/UserLists";
 import ErrorComponent from "../../components/ErrorComponent";
+import SearchBar from "../../components/SearchBar";
 
 const HomeScreen = ({ navigation }) => {
-  const [searchText, setSearchText] = useState("");
   const [users, setUsers] = useState([]);
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -19,19 +19,19 @@ const HomeScreen = ({ navigation }) => {
           const userData = await fetchUserData(user.login);
           return {
             ...user,
-            followers: userData.followers,
+            followers: userData.followers || 0,
           };
         })
       );
       setUsers(usersWithFollowers);
     } catch (error) {
-      setErrors(`Se produjo un error al buscar seguidores: ${error}`);
+      setErrors([`Se produjo un error al buscar seguidores: ${error}`]);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleSearch = useCallback(async () => {
+  const handleSearch = useCallback(async (searchText) => {
     const newErrors = [];
 
     if (searchText.length < 4) {
@@ -56,33 +56,46 @@ const HomeScreen = ({ navigation }) => {
     } catch (error) {
       setErrors([`Se produjo un error al buscar usuarios: ${error}`]);
     }
-  }, [searchText]);
+  }, []);
 
-  return (
-    <ScrollView contentContainerStyle={{ padding: 16 }}>
-      <TextInput
-        placeholder="Ingrese un nombre de usuario"
-        value={searchText}
-        onChangeText={(text) => setSearchText(text)}
-        style={{ marginBottom: 10 }}
-      />
-      <Button title="Buscar" onPress={handleSearch} />
-
-      {errors.length > 0 ? <ErrorComponent messages={errors} /> : null}
-
-      {loading ? (
+  const renderUsersList = () => {
+    if (errors.length > 0) {
+      return <ErrorComponent messages={errors} />;
+    } else if (loading) {
+      return (
         <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
-      ) : searched && users && users.length > 0 ? (
-        <>
-          <UserList users={users} navigation={navigation} />
+      );
+    } else if (searched && users && users.length > 0) {
+      return (
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={users}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => (
+              <UserList users={[item]} navigation={navigation} />
+            )}
+          />
           <BarChart users={users} />
-        </>
-      ) : null}
-    </ScrollView>
+        </View>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  return (
+    <View style={{ flex: 1, padding: 16 }}>
+      <SearchBar onSearch={handleSearch} />
+      {renderUsersList()}
+    </View>
   );
 };
 

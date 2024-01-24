@@ -1,3 +1,4 @@
+// services/fetchData.js
 export const fetchUserData = async (username) => {
   try {
     const response = await fetch();
@@ -11,9 +12,7 @@ export const fetchUserData = async (username) => {
 
 export const fetchUsersList = async (searchText) => {
   try {
-    const response = await fetch(
-      
-    );
+    const response = await fetch();
     const data = await response.json();
     return data.items;
   } catch (error) {
