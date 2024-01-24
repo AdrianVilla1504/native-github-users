@@ -1,12 +1,12 @@
 # native-github-users
 
-Una pequeña aplicacion de busqueda de react native para ver usuarios de github
+Una pequeña aplicación de busqueda de react native para ver usuarios de github
 
 ## Para empezar
 
-Se uso Expo, Node, Npm como gestor de paquetes.
+Se uso Javascript como lenguaje de progracmacion, Expo como framework de React, Node como entorno de ejecucion, y Npm como gestor de paquetes.
 
-Copia y pega el siguiente codigo para simular las variables de entorno en el directorio "/src/services/GitHubUsers.js"
+Copia y pegue el siguiente codigo para simular las variables de entorno en el directorio "/src/services/GitHubUsers.js"
 
 ```
 export const fetchUserData = async (username) => {
@@ -43,6 +43,7 @@ json
     "@expo/metro-runtime": "^3.1.1",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
+    "react-native-safe-area-context": "^4.8.2",
     "expo": "~50.0.2",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
@@ -59,7 +60,7 @@ json
 },
 ```
 
-### Instalacion
+### Instalación
 
 Para instalar dependencias ejecutar comando.
 
@@ -67,7 +68,7 @@ Para instalar dependencias ejecutar comando.
 npm install
 ```
 
-### Ejecutar aplicacion
+### Ejecutar aplicación
 
 Para ejecutar en el navegador se usa el comando
 
@@ -75,7 +76,7 @@ Para ejecutar en el navegador se usa el comando
 npm run web
 ```
 
-Si requiere ver en el vista movil, descargue la aplicacion de expo y escanee el codigo qr que aparece en consola cuando esta ejecutandose el programa.
+Si requiere ver en la vista movil, descargue la aplicacion de expo y escanee el codigo qr que aparece en consola cuando esta ejecutandose el programa.
 
 ### Ayuda
 
