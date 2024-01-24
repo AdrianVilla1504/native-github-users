@@ -1,4 +1,3 @@
-// services/fetchData.js
 export const fetchUserData = async (username) => {
   try {
     const response = await fetch();
