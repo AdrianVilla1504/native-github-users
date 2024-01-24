@@ -1,4 +1,4 @@
-# React native users
+# native-github-users
 
 Una pequeña aplicacion de busqueda de react native para ver usuarios de github
 
